@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
-	broker "github.com/bstick12/onboarding_broker/broker"
+	"github.com/bstick12/onboarding-broker/broker"
 
 	"code.cloudfoundry.org/lager"
 
@@ -17,5 +18,5 @@ func main() {
 	broker := broker.Broker{}
 	logger := lager.NewLogger("RedisServiceBroker")
 	brokerapi.AttachRoutes(r, broker, logger)
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), r))
 }

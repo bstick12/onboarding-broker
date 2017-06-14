@@ -1,3 +1,5 @@
 bin/
 pkg/
 *.swp
+vendor/
+onboarding-broker

@@ -1,7 +1,7 @@
 package broker_test
 
 import (
-	"onboarding_broker/broker"
+	"github.com/bstick12/onboarding-broker/broker"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
