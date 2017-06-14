@@ -1,0 +1,6 @@
+package: github.com/bstick12/onboarding-broker
+import:
+- package: code.cloudfoundry.org/lager
+- package: github.com/gorilla/mux
+  version: ^1.4.0
+- package: github.com/pivotal-cf/brokerapi
