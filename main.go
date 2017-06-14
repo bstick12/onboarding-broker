@@ -3,7 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
-	"onboarding_broker/broker"
+
+	broker "github.com/bstick12/onboarding_broker/broker"
 
 	"code.cloudfoundry.org/lager"
 

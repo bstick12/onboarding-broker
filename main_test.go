@@ -16,7 +16,7 @@ var _ = Describe("Main", func() {
 
 	BeforeSuite(func() {
 		var err error
-		pathToMain, err = gexec.Build("onboarding_broker/main")
+		pathToMain, err = gexec.Build("onboarding_broker")
 		fmt.Println(pathToMain)
 		Expect(err).ShouldNot(HaveOccurred())
 	})
