@@ -1,0 +1,4 @@
+applications:
+- name: onboarding-broker
+  memory: 32M
+  instances: 2
