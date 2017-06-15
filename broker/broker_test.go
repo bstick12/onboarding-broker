@@ -1,6 +1,8 @@
 package broker_test
 
 import (
+	"os"
+
 	"github.com/bstick12/onboarding-broker/broker"
 
 	. "github.com/onsi/ginkgo"
@@ -13,8 +15,8 @@ var _ = Describe("Broker", func() {
 	Describe("Services()", func() {
 		It("should return the redis service", func() {
 			broker := broker.Broker{}
-			plan := ServicePlan{ID: "base", Name: "base"}
-			service := Service{ID: "redis", Name: "redis", Bindable: true, Plans: []ServicePlan{plan}}
+			plan := ServicePlan{ID: "base", Name: "base", Description: "Base Plan"}
+			service := Service{ID: "redis", Name: "redis", Description: "Redis", Bindable: true, Plans: []ServicePlan{plan}}
 			Expect(broker.Services(nil)).To(Equal([]Service{service}))
 		})
 	})
@@ -37,8 +39,17 @@ var _ = Describe("Broker", func() {
 
 	Describe("Bind", func() {
 		It("should return the binding", func() {
+			_ = os.Setenv("REDIS_HOST", "host")
+			_ = os.Setenv("REDIS_PORT", "1234")
+			_ = os.Setenv("REDIS_PASSWORD", "secret")
+
 			broker := broker.Broker{}
-			Expect(func() { _, _ = broker.Bind(nil, "", "", BindDetails{}) }).To(Panic())
+			binding, err := broker.Bind(nil, "", "", BindDetails{})
+
+			expectedCredentials := map[string]string{"host": "host", "port": "1234", "password": "secret"}
+			expectedBinding := Binding{Credentials: expectedCredentials}
+			Expect(err).ToNot(HaveOccurred())
+			Expect(binding).To(Equal(expectedBinding))
 		})
 	})
 

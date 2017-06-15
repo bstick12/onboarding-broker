@@ -3,6 +3,7 @@ package main_test
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"os/exec"
 
 	. "github.com/onsi/ginkgo"
@@ -16,12 +17,13 @@ var _ = Describe("Main", func() {
 
 	BeforeSuite(func() {
 		var err error
-		pathToMain, err = gexec.Build("onboarding_broker")
+		pathToMain, err = gexec.Build("github.com/bstick12/onboarding-broker")
 		fmt.Println(pathToMain)
 		Expect(err).ShouldNot(HaveOccurred())
 	})
 
 	BeforeEach(func() {
+		_ = os.Setenv("PORT", "8080")
 		command := exec.Command(pathToMain)
 		_, err := gexec.Start(command, GinkgoWriter, GinkgoWriter)
 		Expect(err).ShouldNot(HaveOccurred())
