@@ -21,7 +21,7 @@ func (b Broker) Provision(context context.Context, instanceID string, details Pr
 }
 
 func (b Broker) Deprovision(context context.Context, instanceID string, details DeprovisionDetails, asyncAllowed bool) (DeprovisionServiceSpec, error) {
-	panic("not implemented")
+	return DeprovisionServiceSpec{}, nil
 }
 
 func (b Broker) Bind(context context.Context, instanceID string, bindingID string, details BindDetails) (Binding, error) {
@@ -35,7 +35,7 @@ func (b Broker) Bind(context context.Context, instanceID string, bindingID strin
 }
 
 func (b Broker) Unbind(context context.Context, instanceID string, bindingID string, details UnbindDetails) error {
-	panic("not implemented")
+	return nil
 }
 
 func (b Broker) Update(context context.Context, instanceID string, details UpdateDetails, asyncAllowed bool) (UpdateServiceSpec, error) {
